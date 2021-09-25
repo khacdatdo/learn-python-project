@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/app.css">
-    <link rel="stylesheet" href="./assets/css/customs.css">
+    <link rel="stylesheet" href="{% static '/assets/css/app.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/customs.css' %}">
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
     <title>Homepage</title>
 </head>
@@ -45,100 +47,63 @@
         </div>
     </div>
     <div class="container">
+
+
+
         <div class="section p-3">
             <div class="section-title">
                 <h2>Categories</h2>
             </div>
             <div class="row">
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
+            
+            {% if categories %}
+                {% for category in categories %}
+
+                        <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                            <a href="category/{{ category.category_key }}/play" class="card">
+                                <div class="card-image">
+                                    <img src="{% static '/assets/img/quiz.jpg' %}" alt="image">
+                                </div>
+                                <div class="card-entry">
+                                    <span>{{ category.category_title }}</span>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
+
+                {% endfor %}
+            {% endif %}
+            
             </div>
         </div>
+
+
+
         <div class="section p-3">
             <div class="section-title">
                 <h2>Languages Programming</h2>
             </div>
             <div class="row">
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="#" class="card">
-                        <div class="card-image">
-                            <img src="./assets/img/quiz.jpg" alt="Day la anh">
-                        </div>
-                        <div class="card-entry">
-                            <span>Đây là tiêu đề của thẻ</span>
-                        </div>
-                    </a>
-                </div>
+                {% if languages %}
+                    {% for language in languages %}
+
+                            <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                                <a href="language/{{ language.lg_key }}/play" class="card">
+                                    <div class="card-image">
+                                        <img src="{% static '/assets/img/quiz.jpg' %}" alt="image">
+                                    </div>
+                                    <div class="card-entry">
+                                        <span>{{ language.lg_title }}</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                    {% endfor %}
+                {% endif %}
             </div>
-        </div>
+        </div>        
+
+
+
     </div>
 </body>
 
