@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db import models
 from quizz.models import Category, LanguageProgramming, Question, Choice
 
 # Classes
@@ -16,8 +17,11 @@ class QuestionsAdmin(admin.ModelAdmin):
     search_fields = ['id', 'question_text']
 
 class CategoriesAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Category', {'fields': ['category_key', 'category_title', 'category_score']}),
+    ]
     ordering = ['id']
-    list_display = ['id', 'category_key', 'category_title', 'questions']
+    list_display = ['id', 'category_key', 'category_title', 'category_score', 'questions']
     list_display_links = ['id', 'category_key', 'category_title']
     
 class LanguagesAdmin(admin.ModelAdmin):

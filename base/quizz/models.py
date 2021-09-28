@@ -10,6 +10,7 @@ class Category(models.Model):
 
     category_key = models.CharField(max_length=200)
     category_title = models.CharField(max_length=500)
+    category_score = models.IntegerField(default=0)
 
 class LanguageProgramming(models.Model):
     def __str__(self):
