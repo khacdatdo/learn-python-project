@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static '/assets/css/app.css' %}">
-    <link rel="stylesheet" href="{% static '/assets/css/customs.css' %}">
+    <link rel="stylesheet" href="{% static '/css/app.css' %}">
+    <link rel="stylesheet" href="{% static '/css/customs.css' %}">
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
     <title>Homepage</title>
 </head>
@@ -62,7 +62,7 @@
                         <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
                             <a href="category/{{ category.category_key }}/play" class="card">
                                 <div class="card-image">
-                                    <img src="{% static '/assets/img/quiz.jpg' %}" alt="image">
+                                    <img src="{% static '/img/quiz.jpg' %}" alt="image">
                                 </div>
                                 <div class="card-entry">
                                     <span>{{ category.category_title }}</span>
@@ -89,7 +89,7 @@
                             <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
                                 <a href="language/{{ language.lg_key }}/play" class="card">
                                     <div class="card-image">
-                                        <img src="{% static '/assets/img/quiz.jpg' %}" alt="image">
+                                        <img src="{% static '/img/quiz.jpg' %}" alt="image">
                                     </div>
                                     <div class="card-entry">
                                         <span>{{ language.lg_title }}</span>
