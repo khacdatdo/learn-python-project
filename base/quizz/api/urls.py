@@ -17,6 +17,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.Hello.as_view()),
     path('questions/', views.QuestionsRoute.as_view()),
+    path('questions/<int:id>', views.QuestionByIdRoute.as_view()),
 ]
