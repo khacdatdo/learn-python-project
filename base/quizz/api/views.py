@@ -9,7 +9,6 @@ class Hello(APIView):
     def get(self, request):
         return Response({'message': 'Hi, What do you want to find?'}, status=status.HTTP_200_OK)
 
-
 class QuestionsRoute(APIView):
 
     def get(self, request):
