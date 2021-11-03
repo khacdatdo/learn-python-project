@@ -1,14 +1,14 @@
-def response_with_success(data):
+def response_with_success(data, message='Success'):
     response = {
         'data': data,
-        'message': 'Thành công'
+        'message': message
     }
     return response
     
 
-def response_with_errors(errors):
+def response_with_errors(errors, message='Error'):
     response = {
         'errors': errors,
-        'message': 'Sao mày ngu thế?'
+        'message': message
     }
     return response

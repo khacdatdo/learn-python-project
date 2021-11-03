@@ -1,0 +1,29 @@
+#root {
+    height: 100vh;
+}
+
+#root > .row {
+    height: 100%;
+    align-items: stretch;
+}
+
+#root > .row > div:first-child {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#root > .row > div:last-child .card-body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#root > .row > div:last-child .card-body form {
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 15px;
+}

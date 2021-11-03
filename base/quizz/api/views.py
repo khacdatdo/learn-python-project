@@ -1,14 +1,47 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from quizz.models import Question, Choice, Category, LanguageProgramming
-from .serializers import QuestionSerializer, CategorySerializer, ChoiceSerializer, LanguageProgrammingSerializer
+from quizz.models import Question, Choice, Category, LanguageProgramming, User
+from .serializers import QuestionSerializer, CategorySerializer, ChoiceSerializer, LanguageProgrammingSerializer, UserSerializer
 from .helpers import response_with_errors, response_with_success
 
+
+class AuthRoute(APIView):
+
+    def post(self, request):
+        try:
+            user = User.objects.get(username=request.data['username'])
+            if user.password == request.data['password']:
+                token = create_token()
+                user.token = token
+                user.save()
+                return Response(response_with_success(data={ "token": token }), status=status.HTTP_200_OK)
+            else:
+                return Response(response_with_errors({'password': 'Wrong'}, 'Wrong password'), status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(response_with_errors({'username': 'Wrong'}, 'Username is not exist'), status=status.HTTP_400_BAD_REQUEST)
+
+
+class UsersRoute(APIView):
+    
+        def post(self, request):
+            try:
+                user = User.objects.get(username=request.data['username'])
+                return Response(response_with_errors({'username': 'Exist'}, 'Username is exist'), status=status.HTTP_400_BAD_REQUEST)
+            except:
+                token = create_token()
+                request.data['token'] = token
+                serializer = UserSerializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(response_with_success({ "token": token }, 'Create account successfully'), status=status.HTTP_201_CREATED)
+                return Response(response_with_errors(serializer.errors, 'Error'), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class QuestionsRoute(APIView):
 
     def get(self, request):
+        if ("token" not in request.GET.keys() or not auth(request.GET['token'])):
+            return Response(response_with_errors({'token': 'Wrong'}, 'Wrong token'), status=status.HTTP_400_BAD_REQUEST)
         questions = [QuestionSerializer(question).data for question in Question.objects.all()]
         for question in questions:
             choices = Choice.objects.filter(question=question['id'])
@@ -46,3 +79,17 @@ class QuestionByIdRoute(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(response_with_errors(serializer.errors), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+
+
+def create_token(max_length = 100):
+    import random
+    import string
+    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(max_length))
+
+def auth(token):
+    try:
+        user = User.objects.get(token=token)
+        return True
+    except:
+        return False

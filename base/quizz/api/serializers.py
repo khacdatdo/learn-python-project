@@ -1,4 +1,4 @@
-from quizz.models import Question, Category, Choice, LanguageProgramming
+from quizz.models import Question, Category, Choice, LanguageProgramming, User
 from rest_framework import serializers
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -38,3 +38,13 @@ class LanguageProgrammingSerializer(serializers.ModelSerializer):
     class Meta:
         model = LanguageProgramming
         fields = ('id', 'lg_key', 'lg_title')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=200, min_length=6)
+    password = serializers.CharField(max_length=200, min_length=6)
+    token = serializers.CharField()
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'password', 'token')

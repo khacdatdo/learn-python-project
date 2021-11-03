@@ -42,3 +42,12 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.TextField()
     is_correct_answer = models.BooleanField(default=False)
+
+
+class User(models.Model):
+    def __str__(self) -> str:
+        return self.username
+
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    token = models.TextField()

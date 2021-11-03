@@ -8,3 +8,9 @@ def index(request):
         'languages': LanguageProgramming.objects.all(),
     }
     return render(request, 'quizz/common.html', data)
+
+def login(request):
+    return render(request, 'quizz/login.html')
+
+def signup(request):
+    return render(request, 'quizz/sign-up.html')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from quizz.models import Category, LanguageProgramming, Question, Choice
+from quizz.models import Category, LanguageProgramming, Question, Choice, User
 
 # Classes
 class ChoicesInLine(admin.TabularInline):
@@ -29,8 +29,14 @@ class LanguagesAdmin(admin.ModelAdmin):
     list_display = ['id', 'lg_key', 'lg_title', 'questions']
     list_display_links = ['id', 'lg_key', 'lg_title']
     
+class UsersAdmin(admin.ModelAdmin):
+    ordering = ['id']
+    list_display = ['id', 'username', 'password', 'token']
+    list_display_links = ['id', 'username', 'password', 'token']
+
 
 # Register your models here.
 admin.site.register(Question, QuestionsAdmin)
 admin.site.register(Category, CategoriesAdmin)
 admin.site.register(LanguageProgramming, LanguagesAdmin)
+admin.site.register(User, UsersAdmin)
