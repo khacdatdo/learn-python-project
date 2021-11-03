@@ -1,2 +1,2 @@
-# learn-python-project
+# Python Major Assignment
  Python Project - Teamwork
