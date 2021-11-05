@@ -5,3 +5,49 @@
 .page-title {
     font-size: 50px;
 }
+
+.userMenu {
+    position: relative;
+}
+
+.userMenu .btnToggle {
+    cursor: pointer;
+}
+
+.userMenu .username {
+    font-weight: 500;
+}
+
+.userMenu .user-menu {
+    display: none;
+    position: absolute;
+    width: 200px;
+    top: 40px;
+    right: 10px;
+    background-color: white;
+    border: solid 1px rgb(219, 229, 236);
+    overflow: hidden;
+}
+
+.userMenu .user-menu.active {
+    display: block;
+}
+
+.user-menu .menu-item {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    padding: 10px 20px;
+    display: block;
+    transition: .1s;
+}
+
+.user-menu .menu-item:hover {
+    background-color: rgba(210, 220, 226, 0.623);
+}
+
+.user-menu .menu-item i {
+    margin-right: 8px;
+}

@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card-body p-4">
-                    <form class="p-4" action="">
+                    <form class="p-4">
                         <div class="form-element p-y-4 text-center">
                             <h1 class="m-y-2 text-primary">Log In</h1>
                             <b class="p-y-4">Welcome to Quizzz!</b>
@@ -32,7 +32,7 @@
                             <input class="input-block" type="password" name="password" placeholder="Password...">
                         </div>
                         <div class="form-element m-y-3">
-                            <button class="btn btn-block">Log in</button>
+                            <button id="btnLogin" class="btn btn-block" type="submit">Log in</button>
                         </div>
                         <div class="form-element m-y-4 text-center">
                             <a href="sign-up" class="text-primary">Don't have an account?</a>
@@ -42,5 +42,8 @@
             </div>
         </div>
     </div>
+
+    <script src="{% static '/js/core.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>

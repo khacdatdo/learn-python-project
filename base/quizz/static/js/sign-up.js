@@ -22,9 +22,16 @@
             return false;
         }
 
-        createUser(username, password)
+        sendRequest('/api/users/', {
+            username, password
+        }, 'POST')
             .then(function (res) {
-                console.log(res);
+                if (res.data) {
+                    alert(res.message);
+                    window.location.href = '/';
+                } else {
+                    alert(res.message);
+                }
             })
             .catch(function (err) {
                 alert(err.message);
@@ -35,22 +42,3 @@
 
 
 })();
-
-
-function createUser(username, password) {
-    const url = '/api/users/create/';
-    const data = {
-        username: username,
-        password: password
-    };
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value
-        },
-        body: JSON.stringify(data)
-    };
-    return fetch(url, options)
-        .then(response => response.json());
-}
