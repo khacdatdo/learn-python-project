@@ -20,7 +20,7 @@ from .api import urls as api_urls
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login', views.login, name='login'),
-    path('sign-up', views.signup, name='sign-up'),
+    path('login/', views.login, name='login'),
+    path('sign-up/', views.signup, name='sign-up'),
     path('api/', include(api_urls)),
 ]

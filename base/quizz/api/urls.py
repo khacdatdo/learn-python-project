@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     path('questions/', views.QuestionsRoute.as_view()),
-    path('questions/<int:id>', views.QuestionByIdRoute.as_view()),
-    path('users/auth', views.AuthRoute.as_view()),
-    path('users/create/', views.UsersRoute.as_view()),
+    path('questions/<int:id>/', views.QuestionByIdRoute.as_view()),
+    path('auth/', views.AuthRoute.as_view()),
+    path('users/', views.UsersRoute.as_view()),
 ]
