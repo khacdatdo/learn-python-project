@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from quizz.models import Question, Choice, Category, LanguageProgramming, User
-from .serializers import QuestionSerializer, CategorySerializer, ChoiceSerializer, LanguageProgrammingSerializer, UserSerializer
+from quizz.models import Question, Choice, Category, ProgrammingLanguage, User
+from .serializers import QuestionSerializer, CategorySerializer, ChoiceSerializer, ProgrammingLanguageSerializer, UserSerializer
 from .helpers import create_token, response_with_errors, response_with_success, auth
 
 

@@ -1,11 +1,11 @@
-from quizz.models import Question, Category, Choice, LanguageProgramming, User, Level
+from quizz.models import Question, Category, Choice, ProgrammingLanguage, User, Level
 from rest_framework import serializers
 
 
 class LevelSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100)
     score = serializers.IntegerField()
-    
+
     class Meta:
         model = Level
         fields = ('id', 'name', 'score')
@@ -13,7 +13,7 @@ class LevelSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     context = serializers.CharField()
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-    language = serializers.PrimaryKeyRelatedField(queryset=LanguageProgramming.objects.all()) 
+    language = serializers.PrimaryKeyRelatedField(queryset=ProgrammingLanguage.objects.all()) 
 
     class Meta:
         model = Question
@@ -38,11 +38,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class LanguageProgrammingSerializer(serializers.ModelSerializer):
+class ProgrammingLanguageSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=200)
 
     class Meta:
-        model = LanguageProgramming
+        model = ProgrammingLanguage
         fields = ('id', 'name')
 
 

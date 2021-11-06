@@ -42,7 +42,8 @@
             </div>
             <div class="col-stretch col-sm-12 col-lg-4 p-2">
                 <div class="block ht-100 p-4 text-center">
-                    <img class="p-4" width="100" src="https://i0.wp.com/phocode.com/wp-content/uploads/2016/03/logoPython.png" alt="Day la anh">
+                    <img class="p-4" width="100"
+                        src="https://i0.wp.com/phocode.com/wp-content/uploads/2016/03/logoPython.png" alt="Day la anh">
                     <h1 class="text-center p-1">Python</h1>
                 </div>
             </div>
@@ -51,59 +52,83 @@
     <div class="container">
 
 
+        {% if levels %}
+        <div class="section p-3">
+            <div class="section-title">
+                <h2>Levels</h2>
+            </div>
+            <div class="row">
 
+                {% for level in levels %}
+
+                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                    <a href="/play/?level={{ level.id }}" class="card">
+                        <div class="card-image">
+                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
+                        </div>
+                        <div class="card-entry">
+                            <span>{{ level.name }}</span>
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if languages %}
+        <div class="section p-3">
+            <div class="section-title">
+                <h2>Programming languages</h2>
+            </div>
+            <div class="row">
+                {% for language in languages %}
+
+                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                    <a href="/play/?language={{ language.id }}" class="card">
+                        <div class="card-image">
+                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
+                        </div>
+                        <div class="card-entry">
+                            <span>{{ language.name }}</span>
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if categories %}
         <div class="section p-3">
             <div class="section-title">
                 <h2>Categories</h2>
             </div>
             <div class="row">
-            
-            {% if categories %}
+
                 {% for category in categories %}
 
-                        <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                            <a href="category/{{ category.category_key }}/play" class="card">
-                                <div class="card-image">
-                                    <img src="{% static '/img/quiz.jpg' %}" alt="image">
-                                </div>
-                                <div class="card-entry">
-                                    <span>{{ category.category_title }}</span>
-                                </div>
-                            </a>
+                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                    <a href="/play/?category={{ category.id }}" class="card">
+                        <div class="card-image">
+                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
                         </div>
+                        <div class="card-entry">
+                            <span>{{ category.name }}</span>
+                        </div>
+                    </a>
+                </div>
 
                 {% endfor %}
-            {% endif %}
-            
+
             </div>
         </div>
-
-
-
-        <div class="section p-3">
-            <div class="section-title">
-                <h2>Languages Programming</h2>
-            </div>
-            <div class="row">
-                {% if languages %}
-                    {% for language in languages %}
-
-                            <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                                <a href="language/{{ language.lg_key }}/play" class="card">
-                                    <div class="card-image">
-                                        <img src="{% static '/img/quiz.jpg' %}" alt="image">
-                                    </div>
-                                    <div class="card-entry">
-                                        <span>{{ language.lg_title }}</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>        
-
+        {% endif %}
 
 
     </div>

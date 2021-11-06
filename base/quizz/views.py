@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from quizz.api.helpers import create_token
 from quizz.api.helpers import auth
-from quizz.models import Category, LanguageProgramming
+from quizz.models import Category, ProgrammingLanguage, Level
 
 # Create your views here.
 def index(request):
@@ -10,8 +10,9 @@ def index(request):
 
     user = auth(request.COOKIES['token'])
     data = {
+        'levels': Level.objects.all(),
         'categories': Category.objects.all(),
-        'languages': LanguageProgramming.objects.all(),
+        'languages': ProgrammingLanguage.objects.all(),
         'user': user
     }
     return render(request, 'quizz/common.html', data)

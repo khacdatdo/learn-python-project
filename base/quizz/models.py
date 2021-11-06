@@ -16,7 +16,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=500)
 
-class LanguageProgramming(models.Model):
+class ProgrammingLanguage(models.Model):
     def __str__(self):
         return self.name.capitalize()
     def questions(self):
@@ -38,7 +38,7 @@ class Question(models.Model):
 
     context = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    language = models.ForeignKey(LanguageProgramming, on_delete=models.CASCADE)
+    language = models.ForeignKey(ProgrammingLanguage, on_delete=models.CASCADE)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
 
 class Choice(models.Model):
@@ -57,3 +57,13 @@ class User(models.Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
     token = models.TextField()
+
+
+class UserScore(models.Model):
+    def __str__(self) -> str:
+        return self.user.username
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    details = models.TextField()
+    time = models.DateTimeField(auto_now_add=True)
