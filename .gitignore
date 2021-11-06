@@ -1,2 +1,8 @@
-/venv/*
-*/__pycache__/*
+# Folders
+venv
+__pycache__
+
+
+# Files
+db.sqlite3
+*.log
