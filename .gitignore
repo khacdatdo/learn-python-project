@@ -1,2 +1,2 @@
 /venv/*
-base/quizz/api/__pycache__/*
+*/__pycache__/*
