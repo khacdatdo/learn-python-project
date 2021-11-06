@@ -1,43 +1,49 @@
-from quizz.models import Question, Category, Choice, LanguageProgramming, User
+from quizz.models import Question, Category, Choice, LanguageProgramming, User, Level
 from rest_framework import serializers
 
+
+class LevelSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=100)
+    score = serializers.IntegerField()
+    
+    class Meta:
+        model = Level
+        fields = ('id', 'name', 'score')
+
 class QuestionSerializer(serializers.ModelSerializer):
-    question_text = serializers.CharField()
+    context = serializers.CharField()
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     language = serializers.PrimaryKeyRelatedField(queryset=LanguageProgramming.objects.all()) 
 
     class Meta:
         model = Question
-        fields = ('id', 'question_text', 'category', 'language')
+        fields = ('id', 'context', 'category', 'language')
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
-    choice_text = serializers.CharField()
+    context = serializers.CharField()
     question = serializers.PrimaryKeyRelatedField(queryset=Question.objects.all())
     is_correct_answer = serializers.BooleanField()
 
     class Meta:
         model = Choice
-        fields = ('id', 'choice_text', 'question', 'is_correct_answer')
+        fields = ('id', 'context', 'question', 'is_correct_answer')
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    category_key = serializers.CharField(max_length=200)
-    category_title = serializers.CharField(max_length=500)
-    category_score = serializers.IntegerField()
+    name = serializers.CharField(max_length=200)
 
     class Meta:
         model = Category
-        fields = ('id', 'category_key', 'category_title', 'category_score')
+        fields = ('id', 'name')
 
 
 class LanguageProgrammingSerializer(serializers.ModelSerializer):
-    lg_key = serializers.CharField(max_length=100)
-    lg_title = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=200)
 
     class Meta:
         model = LanguageProgramming
-        fields = ('id', 'lg_key', 'lg_title')
+        fields = ('id', 'name')
 
 
 class UserSerializer(serializers.ModelSerializer):

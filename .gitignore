@@ -4,6 +4,6 @@ __pycache__
 
 
 # Files
-db.sqlite3
-*.log
 *.pyc
+*.log
+db.sqlite3
