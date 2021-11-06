@@ -1,4 +1,4 @@
 /venv/*
 */__pycache__/*
 *.pyc
-*/migrations/[0-9]+_[a-zA-Z]+.py
+base/quizz/api/__pycache__/*
