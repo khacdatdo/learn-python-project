@@ -14,7 +14,7 @@
             password: password
         };
 
-        sendRequest('/api/auth/', data, 'POST')
+        sendRequest('/api/auth/login/', data, 'POST')
             .then(function (res) {
                 if (res.data) {
                     window.location.href = '/';

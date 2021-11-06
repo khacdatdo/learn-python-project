@@ -22,7 +22,7 @@
             return false;
         }
 
-        sendRequest('/api/users/', {
+        sendRequest('/api/auth/register/', {
             username, password
         }, 'POST')
             .then(function (res) {

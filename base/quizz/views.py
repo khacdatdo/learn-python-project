@@ -1,20 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from quizz.api.helpers import create_token
 from quizz.api.helpers import auth
 from quizz.models import Category, LanguageProgramming
 
 # Create your views here.
 def index(request):
     if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
-        return login(request)
+        return redirect('/login')
 
+    user = auth(request.COOKIES['token'])
     data = {
         'categories': Category.objects.all(),
         'languages': LanguageProgramming.objects.all(),
+        'user': user
     }
     return render(request, 'quizz/common.html', data)
+
+def signup(request):
+    return render(request, 'quizz/sign-up.html')
 
 def login(request):
     return render(request, 'quizz/login.html')
 
-def signup(request):
-    return render(request, 'quizz/sign-up.html')
+def logout(request):
+    if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
+        return redirect('/login')
+    user = auth(request.COOKIES['token'])
+    user.token = create_token()
+    user.save()
+    return redirect('/login')

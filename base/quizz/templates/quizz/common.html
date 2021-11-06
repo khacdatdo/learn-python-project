@@ -21,7 +21,7 @@
                 <div class="userMenu">
                     <div onclick="userMenuToggle()" class="btnToggle">
                         <span><i class="fas fa-user"></i></span>
-                        <span class="username">Hello</span>
+                        <span class="username">{{ user.username }}</span>
                     </div>
                     <div class="user-menu block">
                         <a href="/profile" class="menu-item"><i class="far fa-id-card"></i>Profile</a>
@@ -38,15 +38,6 @@
                 <div class="block ht-100 p-4 text-center search-parent">
                     <h1 class="page-title text-primary"><i class="fas fa-gamepad icon-text-left"></i>QUIZZZ</h1>
                     <small>Một sản phẩm sử dụng Python Django.</small>
-                    
-                    <!-- <div class="input-button-parent">
-                        <div class="input-parent">
-                            <input type="text" name="search" placeholder="Nhap...">
-                        </div>
-                        <div class="button-parent">
-                            <button class="btn">Search</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="col-stretch col-sm-12 col-lg-4 p-2">

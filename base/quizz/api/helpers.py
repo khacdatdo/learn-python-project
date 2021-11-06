@@ -23,3 +23,8 @@ def auth(token):
         return user
     except:
         return None
+
+def create_token(max_length = 100):
+    import random
+    import string
+    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(max_length))
