@@ -45,3 +45,15 @@ def play(request):
         'categories': categories
     }
     return render(request, 'quizz/play.html', data)
+
+def history(request):
+    if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
+        return redirect('/login')
+    user = auth(request.COOKIES['token'])
+
+    # xu li du lieu o day
+    
+    data = {
+        'user': user
+    }
+    return render(request, 'quizz/history.html', data)
