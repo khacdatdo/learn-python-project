@@ -1,3 +1,4 @@
+import math
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -116,8 +117,25 @@ class MyHistory(APIView):
         if ("token" not in request.COOKIES.keys() or not auth(request.COOKIES['token'])):
             return Response(response_with_errors({'token': 'Wrong'}, 'Please login before sending request to this endpoint'), status=status.HTTP_401_UNAUTHORIZED)
         user = User.objects.get(token=request.COOKIES['token'])
-        serializer = UserScoreSerializer(data=request.data)
+        data = {
+            'user': user.id,
+            'details': str(request.data)
+        }
+        score = 0
+        time = 0
+        default_time = 10000
+        for question in request.data:
+            time += question['time']
+            if question['correct']:
+                defaultScore = Question.objects.get(id=question['id']).level.score
+                if default_time - time > 0:
+                    score += defaultScore * (default_time - time) / default_time
+                else:
+                    score += 0
+        data['score'] = math.ceil(score)
+        data['time'] = time / (len(request.data) * 1000)
+        serializer = UserScoreSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(user=user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            serializer.save()
+            return Response(response_with_success(serializer.data['id']), status=status.HTTP_200_OK)
         return Response(response_with_errors(serializer.errors), status=status.HTTP_422_UNPROCESSABLE_ENTITY)

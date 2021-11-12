@@ -95,6 +95,7 @@ function addQuestion(data) {
 function initEvent() {
     window.customEvent = {};
     window.customEvent.progress = null;
+    window.customEvent.score = 0;
     localStorage.setItem('game_data', JSON.stringify([]));
 
     $('body').on('timestart', function () {
@@ -122,7 +123,10 @@ function initEvent() {
                     question.choices.push(choice);
                 });
                 question.myChoice = null;
+                question.correct = false;
                 question.time = getTime();
+                data.push(question);
+                localStorage.setItem('game_data', JSON.stringify(data));
                 $('body').trigger('showresult');
             }
             setProgress((count * step) * 100 / time);
@@ -147,11 +151,17 @@ function initEvent() {
         }, 3000);
     });
 
-    $('body').on('sendresult', function () {
+    $('body').on('sendresult',async function () {
         console.log('sendresult');
         const data = JSON.parse(localStorage.getItem('game_data'));
         console.log(data);
         showAllDone();
+        await wait(1000);
+        sendRequest('/api/history/', data, 'POST').then(res => {
+            console.log(res);
+            await wait(1000);
+            window.location.href = '/history/' + res.data;
+        });
     })
 }
 
@@ -175,7 +185,8 @@ function addEventAnswer() {
         question.context = $(this).parent().parent().parent().find('.question-context').text();
         question.choices = [];
         question.myChoice = $(this).attr('answer-id');
-        $(this).parent().find('.answer-item').each(function () {
+        question.correct = $(this).attr('correct') === 'true';
+        $(this).parent().parent().find('.answer-item').each(function () {
             const choice = {};
             choice.id = $(this).attr('answer-id');
             choice.context = $(this).find('.answer-context').text();
@@ -205,8 +216,7 @@ function setProgress(percent) {
 }
 
 function setCorrectedCount() {
-    let count = document.querySelector('.game-info .score').innerText;
-    document.querySelector('.game-info .score').innerHTML = count++;
+    document.querySelector('.game-info .score span').innerHTML = ++window.customEvent.score;
 }
 
 function setQuestionCurrentCount() {
@@ -221,4 +231,8 @@ function setQuestionCurrentCount() {
 function showAllDone() {
     document.querySelector('.playing').classList.add('animate__slideOutLeft')
     document.querySelector('.after-play').classList.add('animate__slideInRight', 'active');
+}
+
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
