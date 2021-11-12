@@ -71,7 +71,8 @@
     height: 100%;
 }
 
-.before-play {
+.before-play,
+.after-play {
     z-index: 10;
 }
 
@@ -79,20 +80,34 @@
     width: 500px;
 }
 
-.playing {
+.playing,
+.after-play {
     display: none;
 }
 
-.playing.active {
+.playing.active,
+.after-play.active {
     display: block;
 }
 
 .playing .questions,
 .playing .question-item {
     height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
-.getting-started {
+.playing .question-item {
+    display: none;
+}
+
+.playing .question-item.active {
+    display: block;
+}
+
+.getting-started, .all-done {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -103,7 +118,8 @@
     justify-content: center;
 }
 
-.getting-started * {
+.getting-started *,
+.all-done * {
     text-align: center;
     width: 100%;
     font-size: 50px;
@@ -147,7 +163,9 @@
     cursor: pointer;
     transition: .1s;
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .answers > div:first-child .answer-item {
