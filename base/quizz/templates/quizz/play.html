@@ -91,46 +91,30 @@
             <div class="game-info row justify-content-between">
                 <div class="count row">
                     <i class="fas fa-tasks"></i>
-                    <span>1/10</span>
+                    <span>0</span>
                 </div>
                 <div class="score row">
                     <i class="fas fa-star-half-alt"></i>
-                    <span>1000</span>
+                    <span>0</span>
                 </div>
             </div>
-            <div class="questions">
-                <div class="question-item">
-                    <div class="question-context-container row justify-content-center p-4">
-                        <span class="question-context">Lệnh cout trong C++ có tác dụng gì?</span>
-                    </div>
-                    <div class="answers row justify-content-center">
-                        <div class="col-md-3 p-2">
-                            <div class="block p-4 answer-item">
-                                <span class="answer-context">Là stream đầu ra chuẩn trong C++</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-2">
-                            <div class="block p-4 answer-item">
-                                <span class="answer-context">Là stream đầu ra chuẩn trong C++</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-2">
-                            <div class="block p-4 answer-item">
-                                <span class="answer-context">Là stream đầu ra chuẩn trong C++</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-2">
-                            <div class="block p-4 answer-item">
-                                <span class="answer-context">Là stream đầu ra chuẩn trong C++</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="questions"></div>
+        </div>
+
+        <div class="after-play animate__animated">
+            <div class="all-done">
+                <div>
+                    <h1>All Done!</h1>
+                    <p>
+                        <span>Calculating your score...</span>
+                    </p>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static '/js/core.js' %}"></script>
     <script src="{% static 'js/theme.js' %}"></script>
     <script src="{% static 'js/play.js' %}"></script>
