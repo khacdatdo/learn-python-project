@@ -49,9 +49,30 @@
     </div>
     <div class="container">
         <div class="block ht-100 p-4 search-parent">
-            {% for item in user.userscore_set.all %}
-                <h3>{{item.score}}</h3>
-            {% endfor %}    
+            <div> <h2 class="text-center p-y-3">{{user.username}}</h2> </div>
+            <div class="row justify-content-center">
+                <div class="p-4" style="background-color: rgb(49, 49, 161); border-radius: 15% 0% 0% 15%;"> score </div>
+                <div class="p-4" style="background-color: rgb(56, 148, 56); border-radius: 0% 15% 15% 0%;"> time </div>
+            </div>
+            <ul class="p-y-3" style="list-style-type: none;">    
+                <li>
+                    <h3>cau lam sai</h3>
+                    <hr/>
+                    <input type="radio"> dap an sai 1 <br/>
+                    <input type="radio"> dap an sai 2 <br/>
+                    <input type="radio"> dap an sai 3 <br/>
+                    <input type="radio"> dap an sai 4 
+                </li>
+                <li>
+                    <h3>cau lam dung</h3>
+                    <hr/>
+                    <input type="radio"> dap an dung 1 <br/>
+                    <input type="radio"> dap an dung 2 <br/>
+                    <input type="radio"> dap an dung 3 <br/>
+                    <input type="radio"> dap an dung 4 
+                </li>
+            </ul> 
+            
         </div>        
     </div>
 
