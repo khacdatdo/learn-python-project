@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/app.css' %}">
+    <link rel="stylesheet" href="{% static '/css/customs.css' %}">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <title>Homepage</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="page-entry-title text-primary p-2 row justify-content-between">
+                <h1 onclick="homepage()"><i class="fas fa-gamepad icon-text-left"></i>Quizzz</h1>
+                <div class="userMenu">
+                    <div onclick="userMenuToggle()" class="btnToggle">
+                        <span><i class="fas fa-user"></i></span>
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                    <div class="user-menu block">
+                        <a href="/logout" class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-y-4">
+        <div class="row">
+            <div class="col-stretch col-sm-12 col-lg-8 p-2">
+                <div class="block ht-100 p-4 text-center search-parent">
+                    <h1 class="page-title text-primary"><i class="fas fa-gamepad icon-text-left"></i>QUIZZZ</h1>
+                    <small>Một sản phẩm sử dụng Python Django.</small>
+                </div>
+            </div>
+            <div class="col-stretch col-sm-12 col-lg-4 p-2">
+                <div class="block ht-100 p-4 text-center">
+                    <img class="p-4" width="100"
+                        src="https://i0.wp.com/phocode.com/wp-content/uploads/2016/03/logoPython.png" alt="Day la anh">
+                    <h1 class="text-center p-1">Python</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="block ht-100 p-4 search-parent">
+            <form class="p-4" action="">
+                {% csrf_token %}
+                <div class="form-element p-y-4 text-center">
+                    <h1 class="m-y-2 text-primary">Halo!</h1>
+                    <b class="p-y-4">This is your profile</b>
+                </div>
+                <div class="form-element m-y-3">
+                    <label class="m-y-3"><h3>Username</h3></label>
+                    <input class="input-block" type="text" name="username" placeholder="Username..." value="{{user.username}}" disabled>
+                </div>
+                <div class="form-element m-y-3">
+                    <label class="m-y-3"><h3>Change password</h3></label>                    
+                    <input class="input-block" type="password" name="password" placeholder="Please enter current password in order to change password">
+                </div>
+                <div class="form-element m-y-3">
+                    <input class="input-block" type="password" name="repassword" placeholder="New password...">
+                </div>
+                <div class="form-element m-y-3">
+                    <input class="input-block" type="password" name="repassword" placeholder="Repeat new password...">
+                </div>                
+                <div class="form-element m-y-3">
+                    <button class="btn btn-block">Comfirm</button>
+                </div>
+            </form>
+        </div>        
+    </div>
+
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>

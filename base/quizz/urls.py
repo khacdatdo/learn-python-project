@@ -25,4 +25,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('api/', include(api_urls)),
     path('play/', views.play, name='play'),
+    path('profile/',views.profile, name ='profile'),
+    path('overview/',views.overview, name ='overview'),    
 ]

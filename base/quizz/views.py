@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from quizz.api.helpers import create_token
 from quizz.api.helpers import auth
-from quizz.models import Category, ProgrammingLanguage, Level
+from quizz.models import Category, ProgrammingLanguage, Level, UserScore
 
 # Create your views here.
 def index(request):
@@ -57,3 +57,23 @@ def history(request):
         'user': user
     }
     return render(request, 'quizz/history.html', data)
+
+def profile(request):
+    if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
+        return redirect('/login')
+    user = auth(request.COOKIES['token'])
+    data = {
+        'user': user,
+    }
+    return render(request,'quizz/profile.html',data)    
+
+def overview(request):
+    if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
+        return redirect('/login')
+    user = auth(request.COOKIES['token'])
+    # xu li du lieu o day
+    
+    data = {
+        'user': user
+    }
+    return render(request, 'quizz/overview.html', data)     
