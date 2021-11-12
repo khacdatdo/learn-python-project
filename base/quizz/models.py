@@ -26,7 +26,7 @@ class ProgrammingLanguage(models.Model):
 
 class Question(models.Model):
     def __str__(self):
-        return self.question_text
+        return self.context
     def category(self):
         return self.category.name
     def language(self):
@@ -56,7 +56,7 @@ class User(models.Model):
 
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
-    token = models.TextField()
+    token = models.TextField(null=True)
 
 
 class UserScore(models.Model):

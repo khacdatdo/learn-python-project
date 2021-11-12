@@ -30,3 +30,18 @@ def logout(request):
     user.token = create_token()
     user.save()
     return redirect('/login')
+
+def play(request):
+    if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
+        return redirect('/login')
+    user = auth(request.COOKIES['token'])
+    levels = Level.objects.all()
+    languages = ProgrammingLanguage.objects.all()
+    categories = Category.objects.all()
+    data = {
+        'user': user,
+        'levels': levels,
+        'languages': languages,
+        'categories': categories
+    }
+    return render(request, 'quizz/play.html', data)

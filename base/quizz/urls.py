@@ -24,4 +24,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('api/', include(api_urls)),
+    path('play/', views.play, name='play'),
 ]

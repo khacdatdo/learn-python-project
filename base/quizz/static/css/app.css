@@ -265,7 +265,8 @@ a.card {
     width: 100%;
 }
 
-input {
+input,
+select {
     background-color: white;
     padding: 14px 17px;
     font-size: 1em;
@@ -276,7 +277,7 @@ input {
     box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 15%);
 }
 
-input.input-block {
+.input-block {
     width: 100%;
 }
 
@@ -295,6 +296,23 @@ input.input-block {
     margin: 3px;
 }
 
+.form-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.form-element {
+    margin-bottom: 1em;
+}
+
+.form-element label {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: .5em;
+}
+
 .text-center {
     text-align: center;
 }
@@ -309,6 +327,7 @@ input.input-block {
     top: 0;
     left: 0;
     border-bottom: 2px solid rgba(0, 0, 0, .21);
+    z-index: 9999999;
 }
 
 .icon-text-left {
