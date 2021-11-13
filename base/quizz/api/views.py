@@ -1,4 +1,4 @@
-import math, json
+import math, json, random
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -71,7 +71,10 @@ class Questions(APIView):
             filter['category'] = int(request.GET['category'])
         if 'language' in request.GET and request.GET['language'].isnumeric():
             filter['language'] = int(request.GET['language'])
-        questions = [QuestionSerializer(question).data for question in Question.objects.filter(**filter)]
+        filter_questions = Question.objects.filter(**filter).values_list('id', flat=True)
+        question_count = 10
+        random_ids = random.sample(sorted(filter_questions), question_count if len(filter_questions) > question_count else len(filter_questions))
+        questions = QuestionSerializer(Question.objects.filter(id__in=random_ids), many=True).data
         for question in questions:
             choices = Choice.objects.filter(question=question['id'])
             question['choices'] = [ChoiceSerializer(choice).data for choice in choices]
