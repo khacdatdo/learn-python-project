@@ -160,8 +160,8 @@ class MyHistory(APIView):
             time += question['time']
             if question['correct']:
                 defaultScore = Question.objects.get(id=question['id']).level.score
-                if default_time - time > 0:
-                    score += defaultScore * (default_time - time) / default_time
+                if default_time - question['time'] > 0:
+                    score += defaultScore * (default_time - question['time']) / default_time
                 else:
                     score += 0
         data['score'] = math.ceil(score)
