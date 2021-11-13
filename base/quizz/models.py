@@ -5,6 +5,9 @@ from django.db import models
 class Level(models.Model):
     def __str__(self):
         return self.name
+    def questions(self):
+        return len(self.question_set.all())
+
     name = models.CharField(max_length=100)
     score = models.IntegerField(default=0)
 

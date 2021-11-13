@@ -9,7 +9,7 @@ class ChoicesInLine(admin.TabularInline):
 
 class LevelAdmin(admin.ModelAdmin):
     ordering = ['id']
-    list_display = ['id', 'name', 'score']
+    list_display = ['id', 'name', 'score', 'questions']
     list_display_links = ['id', 'name', 'score']
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -49,4 +49,4 @@ admin.site.register(Question, QuestionsAdmin)
 admin.site.register(Category, CategoriesAdmin)
 admin.site.register(ProgrammingLanguage, LanguagesAdmin)
 admin.site.register(User, UsersAdmin)
-admin.site.register(UserScore, UserScoreAdmin)
+# admin.site.register(UserScore, UserScoreAdmin)

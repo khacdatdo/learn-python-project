@@ -104,7 +104,7 @@ function initEvent() {
         if (window.customEvent.progress) {
             clearInterval(window.customEvent.progress);
         }
-        let time = 10000;
+        let time = 20000;
         let count = 0;
         let step = 100;
         window.customEvent.progress = setInterval(() => {

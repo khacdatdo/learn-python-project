@@ -2,7 +2,7 @@ import math, json, random
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from quizz.models import Question, Choice, User, UserScore
+from quizz.models import Question, Choice, User, UserScore, Category, Level, ProgrammingLanguage
 from .serializers import QuestionSerializer, ChoiceSerializer, UserSerializer, UserScoreSerializer
 from .helpers import create_token, hashPassword, response_with_errors, response_with_success, auth
 
@@ -80,12 +80,35 @@ class Questions(APIView):
             question['choices'] = [ChoiceSerializer(choice).data for choice in choices]
         return Response(response_with_success(data=questions), status=status.HTTP_200_OK)
 
-    def post(self, request):
-        serializer = QuestionSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(response_with_errors(serializer.errors), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    # def post(self, request):
+    #     levels = {
+    #         'easy': 'Easy',
+    #         'medium': 'Medium',
+    #         'hard': 'Hard',
+    #         'expert': 'Expert'
+    #     }
+    #     for question in request.data:
+    #         category=Category.objects.get_or_create(name=question['category'])[0]
+    #         category.save()
+    #         level=Level.objects.get_or_create(name=levels[question['level']])[0]
+    #         level.save()
+    #         language=ProgrammingLanguage.objects.get_or_create(name=question['language'])[0]
+    #         language.save()
+    #         new_question = Question.objects.create(
+    #             context=question['question'],
+    #             category=category,
+    #             level=level,
+    #             language=language
+    #         )
+    #         new_question.save()
+    #         for choice in question['answers']:
+    #             choice = Choice.objects.create(
+    #                 question=new_question,
+    #                 context=choice['text'],
+    #                 is_correct_answer=choice['correct']
+    #             )
+    #             choice.save()
+    #     return Response(response_with_success({}, 'Create successfully'), status=status.HTTP_201_CREATED)
 
 
 class QuestionById(APIView):
@@ -132,7 +155,7 @@ class MyHistory(APIView):
         }
         score = 0
         time = 0
-        default_time = 10000
+        default_time = 20000
         for question in request.data:
             time += question['time']
             if question['correct']:
