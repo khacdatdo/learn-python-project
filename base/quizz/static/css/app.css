@@ -537,25 +537,3 @@ select {
         width: calc(100% / 12);
     }
 }
-.hihi[data-v-afeb5f78] {
-    display: inline-block;
-    vertical-align: middle;
-    width: calc(25% - 12
-px
-);
-    margin: 6
-px
-;
-    border-radius: 8
-px
-;
-    height: 48
-px
-;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1
-px
- solid #000;
-    background-color: hsla(0,0%,100%,.07);
-}

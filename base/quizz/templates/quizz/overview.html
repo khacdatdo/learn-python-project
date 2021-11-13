@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static '/css/app.css' %}">
     <link rel="stylesheet" href="{% static '/css/customs.css' %}">
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
-    <title>Homepage</title>
+    <title>Overview</title>
 </head>
 
 <body>
@@ -24,6 +24,9 @@
                         <span class="username">{{ user.username }}</span>
                     </div>
                     <div class="user-menu block">
+                        <a href="/rank" class="menu-item"><i class="fas fa-medal"></i>Rank</a>
+                        <a href="/profile" class="menu-item"><i class="far fa-id-card"></i>Profile</a>
+                        <a href="/overview" class="menu-item"><i class="fas fa-award"></i>Overview</a>
                         <a href="/logout" class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
                     </div>
                 </div>
@@ -47,33 +50,48 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="block ht-100 p-4 search-parent">
-            <div> <h2 class="text-center p-y-3">{{user.username}}</h2> </div>
-            <div class="row justify-content-center">
-                <div class="p-4" style="background-color: rgb(49, 49, 161); border-radius: 15% 0% 0% 15%;"> score </div>
-                <div class="p-4" style="background-color: rgb(56, 148, 56); border-radius: 0% 15% 15% 0%;"> time </div>
-            </div>
-            <ul class="p-y-3" style="list-style-type: none;">    
-                <li>
-                    <h3>cau lam sai</h3>
-                    <hr/>
-                    <input type="radio"> dap an sai 1 <br/>
-                    <input type="radio"> dap an sai 2 <br/>
-                    <input type="radio"> dap an sai 3 <br/>
-                    <input type="radio"> dap an sai 4 
-                </li>
-                <li>
-                    <h3>cau lam dung</h3>
-                    <hr/>
-                    <input type="radio"> dap an dung 1 <br/>
-                    <input type="radio"> dap an dung 2 <br/>
-                    <input type="radio"> dap an dung 3 <br/>
-                    <input type="radio"> dap an dung 4 
-                </li>
-            </ul> 
-            
-        </div>        
+    <div class="overview-area container row">
+        <div class="col-md-8 p-2">
+            <div class="block ht-100 p-4 search-parent">
+                <form class="p-4" action="">
+                    <div class="form-element p-y-4 text-center">
+                        <h1 class="m-y-2 text-primary">Overview</h1>
+                        <b class="p-y-4">Overview of the games you have played</b>
+                    </div>
+                    <div class="form-element">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Score</th>
+                                    <th>Average time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if user_scores %}
+                                    {% for item in user_scores %}
+                                        <tr>
+                                            <td><a href="/summary/{{item.id}}/">{{ item.time }}</a></td>
+                                            <td>{{ item.score }}</td>
+                                            <td>{{ item.average_time }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                        <tr>
+                                            <th></th>
+                                            <th>Sum: {{ sum_score }}</th>
+                                            <th></th>
+                                        </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">No data</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>  
+        </div>      
     </div>
 
     <script src="{% static 'js/theme.js' %}"></script>

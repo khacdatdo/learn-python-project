@@ -66,4 +66,5 @@ class UserScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     details = models.TextField()
+    average_time = models.FloatField(default=0)
     time = models.DateTimeField(auto_now_add=True)

@@ -41,7 +41,7 @@ class UsersAdmin(admin.ModelAdmin):
 
 class UserScoreAdmin(admin.ModelAdmin):
     ordering = ['id']
-    list_display = ['id', 'user', 'score', 'time']
+    list_display = ['id', 'user', 'score', 'average_time', 'time']
 
 # Register your models here.
 admin.site.register(Level, LevelAdmin)

@@ -210,3 +210,46 @@
     height: 100%;
     background-color: #00bcd4;
 }
+
+.history-area .answers .answer-item {
+    justify-content: start;
+}
+
+.history-area .question-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ebf0f3;
+    border-radius: 10px;
+}
+
+.history-area .question-item.correct {
+    border-left: solid 10px #00c985;
+}
+
+.history-area .question-item.incorrect {
+    border-left: solid 10px #ec0b43;
+}
+
+.history-area .question-context {
+    border-bottom: solid 1px #cad3db;
+    padding-bottom: 10px;
+}
+
+#chart {
+    width: 100%;
+    padding: 15px;
+    transition: .3s;
+}
+
+#chart .line-chart {
+    width: inherit;
+    transition: .3s;
+}
+
+.overview-area table {
+    width: 100%;
+}
+
+table td {
+    padding: 10px 12px;
+}

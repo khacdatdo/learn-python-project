@@ -160,7 +160,7 @@ function initEvent() {
         sendRequest('/api/history/', data, 'POST').then(async (res) => {
             console.log(res);
             await wait(1000);
-            window.location.href = '/history/' + res.data;
+            window.location.href = '/summary/' + res.data;
         });
     })
 }

@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/', include(api_urls)),
     path('play/', views.play, name='play'),
     path('profile/',views.profile, name ='profile'),
-    path('overview/',views.overview, name ='overview'),    
+    path('overview/',views.overview, name ='overview'),
+    path('summary/<int:id>/',views.summary, name ='summary'),  
+    path('rank/',views.rank, name ='rank'),
 ]

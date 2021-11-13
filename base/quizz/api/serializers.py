@@ -67,8 +67,9 @@ class UserScoreSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     score = serializers.IntegerField()
     details = serializers.CharField()
+    average_time = serializers.FloatField()
     time = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = UserScore
-        fields = ('id', 'user', 'score', 'details', 'time')
+        fields = ('id', 'user', 'score', 'details', 'average_time', 'time')

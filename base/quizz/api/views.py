@@ -1,4 +1,4 @@
-import math
+import math, json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -40,18 +40,24 @@ class Login(APIView):
 
 
 class ChangePassword(APIView):
+    def validate_password(self, password):
+        if len(password) < 6:
+            return False
+        return True
     def post(self, request):
         try:
             user = User.objects.get(token=request.COOKIES['token'])
             if user.password == hashPassword(request.data['old_password']):
-                user.password = hashPassword(request.data['new_password'])
-                user.save()
-                return Response(response_with_success({ "username": user.username }, 'Change password successfully'), status=status.HTTP_200_OK)
+                if self.validate_password(request.data['new_password']):
+                    user.password = hashPassword(request.data['new_password'])
+                    user.save()
+                    return Response(response_with_success({ "username": user.username }, 'Change password successfully'), status=status.HTTP_200_OK)
+                else:
+                    return Response(response_with_errors({'new_password': 'Wrong'}, 'New password must be longer 6 characters'), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
             else:
                 return Response(response_with_errors({'password': 'Incorrect'}, 'Current password is incorrect'), status=status.HTTP_401_UNAUTHORIZED)
         except:
             return Response(response_with_errors({'token': 'Wrong'}, 'Please login before sending request to this endpoint'), status=status.HTTP_401_UNAUTHORIZED)
-
 
 class Questions(APIView):
 
@@ -119,7 +125,7 @@ class MyHistory(APIView):
         user = User.objects.get(token=request.COOKIES['token'])
         data = {
             'user': user.id,
-            'details': str(request.data)
+            'details': json.dumps(request.data, separators=(',', ':'))
         }
         score = 0
         time = 0
@@ -133,7 +139,7 @@ class MyHistory(APIView):
                 else:
                     score += 0
         data['score'] = math.ceil(score)
-        data['time'] = time / (len(request.data) * 1000)
+        data['average_time'] = math.ceil(time / (len(request.data) * 1000) * 100) / 100
         serializer = UserScoreSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

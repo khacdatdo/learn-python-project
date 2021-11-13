@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static '/css/app.css' %}">
     <link rel="stylesheet" href="{% static '/css/customs.css' %}">
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
-    <title>Profile</title>
+    <title>Rank</title>
 </head>
 
 <body>
@@ -50,39 +50,45 @@
             </div>
         </div>
     </div>
-    <div class="container row">
+    <div class="overview-area container row">
         <div class="col-md-8 p-2">
             <div class="block ht-100 p-4 search-parent">
                 <form class="p-4" action="">
                     <div class="form-element p-y-4 text-center">
-                        <h1 class="m-y-2 text-primary">Profile</h1>
-                        <b class="p-y-4">This is your profile</b>
+                        <h1 class="m-y-2 text-primary">Rank</h1>
                     </div>
-                    <div class="form-element m-y-3">
-                        <label class="m-y-3"><h3>Username</h3></label>
-                        <input class="input-block" type="text" name="username" placeholder="Username..." value="{{user.username}}" disabled>
-                    </div>
-                    <div class="form-element m-y-3">
-                        <label class="m-y-3"><h3>Change password</h3></label>                    
-                        <input class="input-block" type="password" name="old_password" placeholder="Please enter current password in order to change password">
-                    </div>
-                    <div class="form-element m-y-3">
-                        <input class="input-block" type="password" name="new_password" placeholder="New password...">
-                    </div>
-                    <div class="form-element m-y-3">
-                        <input class="input-block" type="password" name="confirm_password" placeholder="Repeat new password...">
-                    </div>                
-                    <div class="form-element m-y-3">
-                        <button id="btnChangePassword" class="btn btn-block">Comfirm</button>
+                    <div class="form-element">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th>Top</th>
+                                    <th>Username</th>
+                                    <th>Total score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if user_rank %}
+                                    {% for item in user_rank %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ item.user__username }}</td>
+                                            <td>{{ item.total_score }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">No data</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
                     </div>
                 </form>
             </div>  
         </div>      
     </div>
 
-    <script src="{% static 'js/core.js' %}"></script>
     <script src="{% static 'js/theme.js' %}"></script>
-    <script src="{% static 'js/profile.js' %}"></script>
 </body>
 
 </html>
