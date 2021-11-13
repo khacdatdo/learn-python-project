@@ -157,7 +157,7 @@ function initEvent() {
         console.log(data);
         showAllDone();
         await wait(1000);
-        sendRequest('/api/history/', data, 'POST').then(res => {
+        sendRequest('/api/history/', data, 'POST').then(async (res) => {
             console.log(res);
             await wait(1000);
             window.location.href = '/history/' + res.data;
@@ -178,7 +178,7 @@ function nextQuestion() {
 }
 
 function addEventAnswer() {
-    $('.answer-item').on('click', function () {
+    $('.answer-item').one('click', function () {
         const data = JSON.parse(localStorage.getItem('game_data'));
         const question = {};
         question.id = $(this).parent().parent().parent().attr('question-id');
