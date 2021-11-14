@@ -12,4 +12,3 @@
 
 # Demonstration
 - You can try the demo here: [Demo website](https://quizzz-demo.herokuapp.com)
-
