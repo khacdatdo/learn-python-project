@@ -30,15 +30,15 @@ const questions = [
         "question": "Which command moves the shown text to the next line?",
         "answers": [
             {
-                "text": "\t",
+                "text": "\\t",
                 "correct": false
             },
             {
-                "text": "\n",
+                "text": "\\n",
                 "correct": true
             },
             {
-                "text": "\r",
+                "text": "\\r",
                 "correct": false
             },
             {

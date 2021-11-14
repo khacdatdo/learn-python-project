@@ -141,6 +141,7 @@ function initEvent() {
         }
         $('.question-item.active .answer-item').each(function () {
             if ($(this).attr('correct') === 'true') {
+                $(this).trigger('click');
                 $(this).addClass('animate__flash animate__fast');
             } else {
                 $(this).addClass('animate__fadeOut animate__faster');
