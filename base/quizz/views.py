@@ -1,4 +1,3 @@
-import datetime
 from django.http.response import Http404
 from django.shortcuts import redirect, render
 from quizz.api.helpers import create_token
@@ -7,11 +6,6 @@ from quizz.models import Category, ProgrammingLanguage, Level, UserScore
 from django.db.models import Sum
 
 # Create your views here.
-def response_with_404(request, exception=None):
-    return render(request, 'quizz/404.html', status=404)
-
-
-
 def index(request):
     if 'token' not in request.COOKIES.keys() or auth(request.COOKIES['token']) == None:
         return redirect('/login')
