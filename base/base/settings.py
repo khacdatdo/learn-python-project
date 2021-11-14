@@ -1,3 +1,5 @@
+import django_heroku
+
 """
 Django settings for base project.
 
@@ -134,3 +136,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     # 'http://127.0.0.1:5500',
 ]
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
