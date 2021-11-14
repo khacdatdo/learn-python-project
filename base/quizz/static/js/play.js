@@ -140,8 +140,8 @@ function initEvent() {
             clearInterval(window.customEvent.progress);
         }
         $('.question-item.active .answer-item').each(function () {
+            $(this).off('click');
             if ($(this).attr('correct') === 'true') {
-                $(this).trigger('click');
                 $(this).addClass('animate__flash animate__fast');
             } else {
                 $(this).addClass('animate__fadeOut animate__faster');
