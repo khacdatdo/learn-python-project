@@ -2,4 +2,3 @@ gunicorn
 django
 djangorestframework
 django-heroku
-corsheaders
