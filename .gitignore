@@ -1,1 +1,8 @@
-/venv/*
+# Folders
+venv
+__pycache__/*
+documents
+
+# Files
+*.pyc
+*.log

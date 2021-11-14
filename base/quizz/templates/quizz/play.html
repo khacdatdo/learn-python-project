@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/app.css' %}">
+    <link rel="stylesheet" href="{% static '/css/customs.css' %}">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <title>Homepage</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="page-entry-title text-primary p-2 row justify-content-between">
+                <h1 onclick="homepage()"><i class="fas fa-gamepad icon-text-left"></i>Quizzz</h1>
+                <div class="userMenu">
+                    <div onclick="userMenuToggle()" class="btnToggle">
+                        <span><i class="fas fa-user"></i></span>
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                    <div class="user-menu block">
+                        <a href="/rank" class="menu-item"><i class="fas fa-medal"></i>Rank</a>
+                        <a href="/profile" class="menu-item"><i class="far fa-id-card"></i>Profile</a>
+                        <a href="/overview" class="menu-item"><i class="fas fa-award"></i>Overview</a>
+                        <a href="/logout" class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="game" class="container p-y-4">
+
+        <div class="before-play row justify-content-center animate__animated animate__zoomIn">
+            <div class="block p-4">
+                <form action="" class="form p-4">
+                    <div class="form-element">
+                        <h2 class="text-center form-title">Quiz options</h2>
+                    </div>
+                    {% if languages %}
+                        <div class="form-element">
+                            <label>Language</label>
+                            <select class="input-block" name="language">
+                                {% for language in languages %}
+                                    <option value="{{ language.id }}">{{ language.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                    {% if categories %}
+                        <div class="form-element">
+                            <label>Category</label>
+                            <select class="input-block" name="category">
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                    {% if levels %}
+                        <div class="form-element">
+                            <label>Level</label>
+                            <select class="input-block" name="level">
+                                {% for level in levels %}
+                                    <option value="{{ level.id }}">{{ level.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                    <div class="form-element">
+                        <button id="btnPlay" class="btn btn-block">Play</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="playing animate__animated">
+            <div class="getting-started animate__animated">
+                <div>
+                    <h1>Start in <span class="countdown">5</span>s</h1>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="game-info row justify-content-between">
+                <div class="count row">
+                    <i class="fas fa-tasks"></i>
+                    <span>0</span>
+                </div>
+                <div class="score row">
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>0</span>
+                </div>
+            </div>
+            <div class="questions"></div>
+        </div>
+
+        <div class="after-play animate__animated">
+            <div class="all-done">
+                <div>
+                    <h1>All Done!</h1>
+                    <p>
+                        <span>Calculating your score...</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static '/js/core.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/play.js' %}"></script>
+</body>
+
+</html>

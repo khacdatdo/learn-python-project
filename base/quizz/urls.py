@@ -20,7 +20,13 @@ from .api import urls as api_urls
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.login, name='login'),
     path('sign-up/', views.signup, name='sign-up'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     path('api/', include(api_urls)),
+    path('play/', views.play, name='play'),
+    path('profile/',views.profile, name ='profile'),
+    path('overview/',views.overview, name ='overview'),
+    path('summary/<int:id>/',views.summary, name ='summary'),  
+    path('rank/',views.rank, name ='rank'),
 ]

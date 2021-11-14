@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/app.css' %}">
+    <link rel="stylesheet" href="{% static '/css/customs.css' %}">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <title>Rank</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="page-entry-title text-primary p-2 row justify-content-between">
+                <h1 onclick="homepage()"><i class="fas fa-gamepad icon-text-left"></i>Quizzz</h1>
+                <div class="userMenu">
+                    <div onclick="userMenuToggle()" class="btnToggle">
+                        <span><i class="fas fa-user"></i></span>
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                    <div class="user-menu block">
+                        <a href="/rank" class="menu-item"><i class="fas fa-medal"></i>Rank</a>
+                        <a href="/profile" class="menu-item"><i class="far fa-id-card"></i>Profile</a>
+                        <a href="/overview" class="menu-item"><i class="fas fa-award"></i>Overview</a>
+                        <a href="/logout" class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-y-4">
+        <div class="row">
+            <div class="col-stretch col-sm-12 col-lg-8 p-2">
+                <div class="block ht-100 p-4 text-center search-parent">
+                    <h1 class="page-title text-primary"><i class="fas fa-gamepad icon-text-left"></i>QUIZZZ</h1>
+                    <small>Một sản phẩm sử dụng Python Django.</small>
+                </div>
+            </div>
+            <div class="col-stretch col-sm-12 col-lg-4 p-2">
+                <div class="block ht-100 p-4 text-center">
+                    <img class="p-4" width="100"
+                        src="https://i0.wp.com/phocode.com/wp-content/uploads/2016/03/logoPython.png" alt="Day la anh">
+                    <h1 class="text-center p-1">Python</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overview-area container row">
+        <div class="col-md-8 p-2">
+            <div class="block ht-100 p-4 search-parent">
+                <form class="p-4" action="">
+                    <div class="form-element p-y-4 text-center">
+                        <h1 class="m-y-2 text-primary">Rank</h1>
+                    </div>
+                    <div class="form-element">
+                        <table class="text-center">
+                            <thead>
+                                <tr>
+                                    <th>Top</th>
+                                    <th>Username</th>
+                                    <th>Total score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if user_rank %}
+                                    {% for item in user_rank %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ item.user__username }}</td>
+                                            <td>{{ item.total_score }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">No data</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>  
+        </div>      
+    </div>
+
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>

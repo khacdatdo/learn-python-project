@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="{% static '/css/app.css' %}">
     <link rel="stylesheet" href="{% static '/css/customs.css' %}">
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
-    <title>Homepage</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+
+    <title>Summary - {{ user_score.id }}</title>
 </head>
 
 <body>
@@ -50,91 +53,37 @@
             </div>
         </div>
     </div>
-    <div class="container">
-
-
-        {% if levels %}
-        <div class="section p-3">
-            <div class="section-title">
-                <h2>Levels</h2>
-            </div>
-            <div class="row">
-
-                {% for level in levels %}
-
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="/play/?level={{ level.id }}" class="card">
-                        <div class="card-image">
-                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
+    <div class="history-area container row">
+        <div class="col-md-8 p-2">
+            <div class="block ht-100 p-4 search-parent">
+                <form class="p-4" action="">
+                    <div class="form-element p-y-4 text-center">
+                        <h1 class="m-y-2 text-primary">Summary</h1>
+                        <b class="p-y-4">The information about your game</b>
+                    </div>
+                    <div class="form-element row justify-content-center">
+                        <div class="col-6 text-center p-4">
+                            <h3 class="m-y-2">Total score</h3>
+                            <h1 class="m-y-2">{{ user_score.score }}</h1>
                         </div>
-                        <div class="card-entry">
-                            <span>{{ level.name }}</span>
+                        <div class="col-6 text-center p-4">
+                            <h3 class="m-y-2">Average time</h3>
+                            <h1 class="m-y-2">{{ user_score.average_time }}s</h1>
                         </div>
-                    </a>
-                </div>
-
-                {% endfor %}
-
-            </div>
-        </div>
-        {% endif %}
-
-
-        {% if languages %}
-        <div class="section p-3">
-            <div class="section-title">
-                <h2>Programming languages</h2>
-            </div>
-            <div class="row">
-                {% for language in languages %}
-
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="/play/?language={{ language.id }}" class="card">
-                        <div class="card-image">
-                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
-                        </div>
-                        <div class="card-entry">
-                            <span>{{ language.name }}</span>
-                        </div>
-                    </a>
-                </div>
-
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-
-
-        {% if categories %}
-        <div class="section p-3">
-            <div class="section-title">
-                <h2>Categories</h2>
-            </div>
-            <div class="row">
-
-                {% for category in categories %}
-
-                <div class="col-stretch col-sm-12 col-md-6 col-lg-4 col-xl-3 p-2">
-                    <a href="/play/?category={{ category.id }}" class="card">
-                        <div class="card-image">
-                            <img src="{% static '/img/quiz.jpg' %}" alt="image">
-                        </div>
-                        <div class="card-entry">
-                            <span>{{ category.name }}</span>
-                        </div>
-                    </a>
-                </div>
-
-                {% endfor %}
-
-            </div>
-        </div>
-        {% endif %}
-
-
+                    </div>
+                    <div id="chart" class="form-element">
+                        <canvas class="line-chart"></canvas>
+                    </div>
+                    <div class="form-element questions">
+                        <div id="details" style="display: none;">{{ user_score.details }}</div>
+                    </div>
+                </form>
+            </div>  
+        </div>      
     </div>
-
+    <script src="{% static 'js/core.js' %}"></script>
     <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/history.js' %}"></script>
 </body>
 
 </html>
