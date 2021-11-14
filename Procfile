@@ -1,1 +1,1 @@
-web: gunicorn base/base.wsgi
+web: cd base && gunicorn base.wsgi
